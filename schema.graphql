@@ -1,7 +1,6 @@
 type Application {
   id: ID!
   whitelisted: Boolean
-  challenges: Challenge
   expirationDate: String
   owner: Bytes
   deposit: BigInt
