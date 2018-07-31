@@ -1,25 +1,20 @@
 type Application {
   id: ID!
-  deposit: BigInt
-  applicant: Bytes
-  endDate: BigInt
   whitelisted: Boolean
-  challenge: Challenge @derivedFrom(field: "application")
+  challenges: Challenge
+  expirationDate: String
+  owner: Bytes
+  deposit: BigInt
 }
 
 type Challenge {
   id: ID!
+  challengeId: BigInt
   application: Application
   commitEndDate: BigInt!
   revealEndDate: BigInt!
   challenger: Bytes!
-  outcome: Boolean!
+  outcome: String!
   rewardPool: BigInt!
   totalTokens: BigInt!
-  data: String
-}
-
-type App {
-  domain: String
-  deposit: BigInt
 }
