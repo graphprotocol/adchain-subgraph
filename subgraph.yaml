@@ -11,8 +11,10 @@ dataSources:
     kind: ethereum/events
     apiVersion: 0.0.1
     language: wasm/assemblyscript
+    file: ./mappings/ad-networks.ts
     entities:
-    - Listing
+    - Application
+    - Challenge
     abis:
     - name: Registry
       file: ./abis/adNetworks.json
@@ -21,8 +23,13 @@ dataSources:
       handler: applicationWhitelist
     - event: _ApplicationRemoved(bytes32)
       handler: applicationRemoved
-    # - event: _Application(bytes32, uint256, uint256, string, address)
-    #   handler: applicationAdded()
-    # - event: _Challenge(bytes32, uint256, string, uint256, uint256, address)
-    #   handler: challenge()
-    file: ./mappings/ad-networks.ts
+    - event: _Challenge(bytes32,uint256,string,uint256,uint256,address)
+      handler: challenge
+    - event: _ChallengeSucceeded(bytes32,uint256,uint256,uint256)
+      handler: challengeSucceeded
+    - event: _ChallengeFailed(bytes32,uint256,uint256,uint256)
+      handler: challengeFailed
+    # - event: _Deposit(bytes32,uint256,uint256,address);
+    #   handler: deposit
+    # - event: _Withdrawal(bytes32,uint256,uint256,address);
+    #   handler: withdrawal
