@@ -5,7 +5,7 @@ dataSources:
 - kind: ethereum/contract
   name: AdNetworks
   source:
-    address: "f87e31492faf9a91b02ee0deaad50d51d56d5d4d"
+    address: "5E2Eb68A31229B469e34999C467b017222677183"
     abi: Registry
   mapping:
     kind: ethereum/events
@@ -17,6 +17,12 @@ dataSources:
     - name: Registry
       file: ./abis/adNetworks.json
     eventHandlers:
-    - event: _ApplicationWhiteListed(bytes32)
+    - event: _ApplicationWhitelisted(bytes32)
       handler: applicationWhitelist
+    - event: _ApplicationRemoved(bytes32)
+      handler: applicationRemoved
+    # - event: _Application(bytes32, uint256, uint256, string, address)
+    #   handler: applicationAdded()
+    # - event: _Challenge(bytes32, uint256, string, uint256, uint256, address)
+    #   handler: challenge()
     file: ./mappings/ad-networks.ts
