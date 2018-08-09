@@ -8,7 +8,6 @@ type Application {
 
 type Challenge {
   id: ID!
-  challengeId: BigInt
   application: Application
   commitEndDate: BigInt!
   revealEndDate: BigInt!

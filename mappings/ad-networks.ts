@@ -62,8 +62,7 @@ export function challenge(event: _Challenge): void {
 
   // Create challenge entity
   let challenge = new Entity()
-  challenge.setString('id', listingHash)
-  challenge.setU256('challengeId', challengeId)
+  challenge.setU256('id', challengeId)
   challenge.setU256('commitEndDate', commitEndDate)
   challenge.setU256('revealEndDate', revealEndDate)
   challenge.setAddress('challenger', challenger)
@@ -78,18 +77,18 @@ export function challenge(event: _Challenge): void {
 // Respond to challenge succeeded events
 export function challengeSucceeded(event: _ChallengeSucceeded): void {
   // Get param data from challenge succeeded event
-  let challengeHash = event.params.listingHash.toHex()
+  let listingHash = event.params.listingHash.toHex()
   let challengeId = event.params.challengeID
   let rewardPool = event.params.rewardPool
   let totalTokens = event.params.totalTokens
 
   // Create success entity
   let success = new Entity()
-  success.setString('id', challengeHash)
-  success.setU256('challengeId', challengeId)
+  success.setU256('id', challengeId)
   success.setU256('rewardPool', rewardPool)
   success.setU256('totalTokens', totalTokens)
   success.setString('outcome', 'success')
+  success.setString('application', listingHash)
 
   // Apply store updates
   let store = Store.bind(event.blockHash)
@@ -99,18 +98,19 @@ export function challengeSucceeded(event: _ChallengeSucceeded): void {
 // Respond to challenge failed events
 export function challengeFailed(event: _ChallengeFailed): void {
   // Get param data from challenge succeeded event
-  let challengeHash = event.params.listingHash.toHex()
+  let listingHash = event.params.listingHash.toHex()
   let challengeId = event.params.challengeID
   let rewardPool = event.params.rewardPool
   let totalTokens = event.params.totalTokens
 
   // Create fail entity
   let fail = new Entity()
-  fail.setString('id', challengeHash)
-  fail.setU256('challengeId', challengeId)
+  // fail.setString('id', challengeHash)
+  fail.setU256('id', challengeId)
   fail.setU256('rewardPool', rewardPool)
   fail.setU256('totalTokens', totalTokens)
   fail.setString('outcome', 'failed')
+  fail.setString('application', listingHash)
 
   // Apply store updates
   let store = Store.bind(event.blockHash)
