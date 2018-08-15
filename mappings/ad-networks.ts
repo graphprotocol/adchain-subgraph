@@ -17,7 +17,6 @@ export function applicationWhitelist(event: _ApplicationWhitelisted): void {
   application.setU256('deposit', listingResult.value3)
 
   // Apply store updates (insert or update if entity already exists)
-  let store = Store.bind(event.blockHash)
   store.set('Application', listingHash, application)
 }
 
@@ -26,7 +25,6 @@ export function applicationRemoved(event: _ApplicationRemoved): void {
   let listingHash = event.params.listingHash.toHex()
 
   // Remove application from the store
-  let store = Store.bind(event.blockHash)
   store.remove('Application', listingHash)
 }
 
@@ -47,7 +45,6 @@ export function applicationAdded(event: _Application): void {
   application.setBoolean('whitelisted', false)
 
   // Apply store updates
-  let store = Store.bind(event.blockHash)
   store.set('Application', appHash, application)
 }
 
@@ -71,7 +68,6 @@ export function challenge(event: _Challenge): void {
   challenge.setString('outcome', 'pending')
 
   // Apply store updates
-  let store = Store.bind(event.blockHash)
   store.set('Challenge', challengeId.toHex(), challenge)
 }
 
@@ -92,7 +88,6 @@ export function challengeSucceeded(event: _ChallengeSucceeded): void {
   success.setString('outcome', 'success')
 
   // Apply store updates
-  let store = Store.bind(event.blockHash)
   store.set('Challenge', challengeId.toHex(), success)
 }
 
@@ -113,6 +108,5 @@ export function challengeFailed(event: _ChallengeFailed): void {
   fail.setString('outcome', 'failed')
 
   // Apply store updates
-  let store = Store.bind(event.blockHash)
   store.set('Challenge', challengeId.toHex(), fail)
 }
