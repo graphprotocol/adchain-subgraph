@@ -354,8 +354,8 @@ evp_bytestokey@^1.0.3:
     safe-buffer "^5.1.1"
 
 fast-safe-stringify@^2.0.4:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.5.tgz#cdb2d02d41329afbe67eff073598811d482609e3"
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.6.tgz#04b26106cc56681f51a044cfc0d76cf0008ac2c2"
 
 fecha@^2.3.3:
   version "2.3.3"
@@ -398,7 +398,7 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6:
 
 "graph-cli@ssh://git@github.com:graphprotocol/graph-cli.git":
   version "0.1.0"
-  resolved "ssh://git@github.com:graphprotocol/graph-cli.git#63295d5e759a9e9cfb2a19b0aa77cc9915a385ab"
+  resolved "ssh://git@github.com:graphprotocol/graph-cli.git#3414f92977f732217d796e7de2ffa1b7b580e6e7"
   dependencies:
     assemblyscript "https://github.com/AssemblyScript/assemblyscript#c4ebc8c291c1068da73ddf1a381eab93e1f69e11"
     chalk "^2.4.1"
@@ -1119,8 +1119,8 @@ string_decoder@~1.1.1:
     safe-buffer "~5.1.0"
 
 supports-color@^5.3.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   dependencies:
     has-flag "^3.0.0"
 
