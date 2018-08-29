@@ -1,10 +1,10 @@
 type Application {
-    id: ID!
-    whitelisted: Boolean
-    expirationDate: String
-    owner: Bytes
-    deposit: BigInt
-    challenges: [Challenge] @derivedFrom(field: "application")
+  id: ID!
+  whitelisted: Boolean
+  expirationDate: String
+  owner: Bytes
+  deposit: BigInt
+  challenges: [Challenge] @derivedFrom(field: "application")
 }
 
 type Challenge {

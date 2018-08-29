@@ -28,17 +28,26 @@ Once you have built the subgraph and started a Graph Node you may open a GraphiQ
       whitelisted,
       deposit
     }
-    challengeId
   }
 }
 ```
 
 ```
 {
-  applications(first: 1000, where:{deposit_gt:"10000000000"}) {
+  applications(first: 100,
+    where: {
+        deposit_gt: "10000000000",
+        owner_in: ["0x7609e21921c7efcf73a588833bf7709889291781", "0x1a5cdcfba600e0c669795e0b65c344d5a37a4d5a"]
+   }) {
     id
     whitelisted
     deposit
+    owner
+    challenges {
+      id
+      outcome
+      rewardPool
+    }
   }
 }
 ```
