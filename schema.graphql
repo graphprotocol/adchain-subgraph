@@ -1,13 +1,13 @@
-type Application {
+type Application @entity {
   id: ID!
   whitelisted: Boolean
   expirationDate: String
   owner: Bytes
   deposit: BigInt
-  challenges: [Challenge] @derivedFrom(field: "application")
+  challenges: [Challenge!] @derivedFrom(field: "application")
 }
 
-type Challenge {
+type Challenge @entity {
   id: ID!
   application: Application
   commitEndDate: BigInt!
