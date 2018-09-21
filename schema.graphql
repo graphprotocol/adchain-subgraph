@@ -20,7 +20,7 @@ type Challenge @entity {
   totalTokens: BigInt!
 }
 
-type Deposit {
+type Deposit @entity {
   id: ID!
   application: Application
   commitEndDate: BigInt!
@@ -31,13 +31,13 @@ type Deposit {
   totalTokens: BigInt!
 }
 
-type Withdrawal {
+type Withdrawal @entity {
   id: ID!
   withdrew: BigInt!
   newTotal: BigInt!
   owner: Bytes!
 }
 
-type User {
+type User @entity {
   address: Bytes!
 }
