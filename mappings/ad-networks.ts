@@ -3,7 +3,7 @@ export function applicationWhitelist(event: _ApplicationWhitelisted): void {
   let listingHash = event.params.listingHash.toHex()
 
   // Bind registry contract
-  let registry = Registry.bind(event.address, event.blockHash)
+  let registry = Registry.bind(event.address)
 
   // Use listings method to get application data
   let listingResult = registry.listings(event.params.listingHash)
