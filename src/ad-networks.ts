@@ -1,3 +1,6 @@
+import 'allocator/arena'
+export { allocate_memory }
+
 import { Entity, store } from '@graphprotocol/graph-ts'
 import {
   _Application,
