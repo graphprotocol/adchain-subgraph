@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@graphprotocol/graph-cli@^0.2.8":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@graphprotocol/graph-cli/-/graph-cli-0.2.9.tgz#d2c3e6f2f2eacadb8aa567a2fd55c9a8c6fbb954"
+"@graphprotocol/graph-cli@^0.3.0":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@graphprotocol/graph-cli/-/graph-cli-0.3.1.tgz#e4acc88868fa56df474f7553b3e0acc4afff91f5"
   dependencies:
     assemblyscript "https://github.com/AssemblyScript/assemblyscript#c4ebc8c291c1068da73ddf1a381eab93e1f69e11"
     chalk "^2.4.1"
@@ -1445,11 +1445,12 @@ map-visit@^1.0.0:
     object-visit "^1.0.0"
 
 md5.js@^1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.4.tgz#e9bdbde94a20a5ac18b04340fc5764d5b09d901d"
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+    safe-buffer "^5.1.2"
 
 micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
