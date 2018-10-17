@@ -14,7 +14,7 @@ import {
   _ListingWithdrawn,
   _RewardClaimed,
   _Withdrawal,
-  Registry,
+  Registry
 } from './abis/AdNetworks/Registry'
 
 // Respond to application white listed events
@@ -76,14 +76,13 @@ export function applicationAdded(event: _Application): void {
 export function challenge(event: _Challenge): void {
   // Get param data from challenge event
   let listingHash = event.params.listingHash.toHex()
-  let challengeId = event.params.challengeID
+  let challengeId = event.params.challengeID.toHex()
   let commitEndDate = event.params.commitEndDate
   let revealEndDate = event.params.revealEndDate
   let challenger = event.params.challenger
 
   // Create challenge entity
   let challenge = new Entity()
-  challenge.setU256('id', challengeId)
   challenge.setU256('commitEndDate', commitEndDate)
   challenge.setU256('revealEndDate', revealEndDate)
   challenge.setAddress('challenger', challenger)
@@ -95,7 +94,7 @@ export function challenge(event: _Challenge): void {
   user.setAddress('address', challenger)
 
   // Apply store updates
-  store.set('Challenge', challengeId.toHex(), challenge)
+  store.set('Challenge', challengeId, challenge)
 }
 
 // Respond to challenge succeeded events
