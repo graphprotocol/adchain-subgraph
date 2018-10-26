@@ -1,8 +1,10 @@
 type Application @entity {
   id: ID!
   whitelisted: Boolean
-  expirationDate: String
+  expirationDate: BigInt
+  endDate: BigInt
   owner: Bytes
+  applicant: Bytes
   deposit: BigInt
   challenges: [Challenge!] @derivedFrom(field: "application")
 }
