@@ -7,11 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  I128,
-  U128,
-  I256,
-  U256,
-  H256
+  BigInt
 } from "@graphprotocol/graph-ts";
 
 export class _Application extends EthereumEvent {
@@ -31,12 +27,12 @@ export class _ApplicationParams {
     return this._event.parameters[0].value.toBytes();
   }
 
-  get deposit(): U256 {
-    return this._event.parameters[1].value.toU256();
+  get deposit(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get appEndDate(): U256 {
-    return this._event.parameters[2].value.toU256();
+  get appEndDate(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
   }
 
   get data(): string {
@@ -65,20 +61,20 @@ export class _ChallengeParams {
     return this._event.parameters[0].value.toBytes();
   }
 
-  get challengeID(): U256 {
-    return this._event.parameters[1].value.toU256();
+  get challengeID(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
   get data(): string {
     return this._event.parameters[2].value.toString();
   }
 
-  get commitEndDate(): U256 {
-    return this._event.parameters[3].value.toU256();
+  get commitEndDate(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
   }
 
-  get revealEndDate(): U256 {
-    return this._event.parameters[4].value.toU256();
+  get revealEndDate(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
   }
 
   get challenger(): Address {
@@ -103,12 +99,12 @@ export class _DepositParams {
     return this._event.parameters[0].value.toBytes();
   }
 
-  get added(): U256 {
-    return this._event.parameters[1].value.toU256();
+  get added(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get newTotal(): U256 {
-    return this._event.parameters[2].value.toU256();
+  get newTotal(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
   }
 
   get owner(): Address {
@@ -133,12 +129,12 @@ export class _WithdrawalParams {
     return this._event.parameters[0].value.toBytes();
   }
 
-  get withdrew(): U256 {
-    return this._event.parameters[1].value.toU256();
+  get withdrew(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get newTotal(): U256 {
-    return this._event.parameters[2].value.toU256();
+  get newTotal(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
   }
 
   get owner(): Address {
@@ -253,16 +249,16 @@ export class _ChallengeFailedParams {
     return this._event.parameters[0].value.toBytes();
   }
 
-  get challengeID(): U256 {
-    return this._event.parameters[1].value.toU256();
+  get challengeID(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get rewardPool(): U256 {
-    return this._event.parameters[2].value.toU256();
+  get rewardPool(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
   }
 
-  get totalTokens(): U256 {
-    return this._event.parameters[3].value.toU256();
+  get totalTokens(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
   }
 }
 
@@ -283,16 +279,16 @@ export class _ChallengeSucceededParams {
     return this._event.parameters[0].value.toBytes();
   }
 
-  get challengeID(): U256 {
-    return this._event.parameters[1].value.toU256();
+  get challengeID(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get rewardPool(): U256 {
-    return this._event.parameters[2].value.toU256();
+  get rewardPool(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
   }
 
-  get totalTokens(): U256 {
-    return this._event.parameters[3].value.toU256();
+  get totalTokens(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
   }
 }
 
@@ -309,12 +305,12 @@ export class _RewardClaimedParams {
     this._event = event;
   }
 
-  get challengeID(): U256 {
-    return this._event.parameters[0].value.toU256();
+  get challengeID(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
   }
 
-  get reward(): U256 {
-    return this._event.parameters[1].value.toU256();
+  get reward(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
   get voter(): Address {
@@ -323,18 +319,18 @@ export class _RewardClaimedParams {
 }
 
 export class Registry__challengesResult {
-  value0: U256;
+  value0: BigInt;
   value1: Address;
   value2: boolean;
-  value3: U256;
-  value4: U256;
+  value3: BigInt;
+  value4: BigInt;
 
   constructor(
-    value0: U256,
+    value0: BigInt,
     value1: Address,
     value2: boolean,
-    value3: U256,
-    value4: U256
+    value3: BigInt,
+    value4: BigInt
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -345,28 +341,28 @@ export class Registry__challengesResult {
 
   toMap(): TypedMap<string, EthereumValue> {
     let map = new TypedMap<string, EthereumValue>();
-    map.set("value0", EthereumValue.fromU256(this.value0));
+    map.set("value0", EthereumValue.fromUnsignedBigInt(this.value0));
     map.set("value1", EthereumValue.fromAddress(this.value1));
     map.set("value2", EthereumValue.fromBoolean(this.value2));
-    map.set("value3", EthereumValue.fromU256(this.value3));
-    map.set("value4", EthereumValue.fromU256(this.value4));
+    map.set("value3", EthereumValue.fromUnsignedBigInt(this.value3));
+    map.set("value4", EthereumValue.fromUnsignedBigInt(this.value4));
     return map;
   }
 }
 
 export class Registry__listingsResult {
-  value0: U256;
+  value0: BigInt;
   value1: boolean;
   value2: Address;
-  value3: U256;
-  value4: U256;
+  value3: BigInt;
+  value4: BigInt;
 
   constructor(
-    value0: U256,
+    value0: BigInt,
     value1: boolean,
     value2: Address,
-    value3: U256,
-    value4: U256
+    value3: BigInt,
+    value4: BigInt
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -377,11 +373,11 @@ export class Registry__listingsResult {
 
   toMap(): TypedMap<string, EthereumValue> {
     let map = new TypedMap<string, EthereumValue>();
-    map.set("value0", EthereumValue.fromU256(this.value0));
+    map.set("value0", EthereumValue.fromUnsignedBigInt(this.value0));
     map.set("value1", EthereumValue.fromBoolean(this.value1));
     map.set("value2", EthereumValue.fromAddress(this.value2));
-    map.set("value3", EthereumValue.fromU256(this.value3));
-    map.set("value4", EthereumValue.fromU256(this.value4));
+    map.set("value3", EthereumValue.fromUnsignedBigInt(this.value3));
+    map.set("value4", EthereumValue.fromUnsignedBigInt(this.value4));
     return map;
   }
 }
@@ -431,50 +427,52 @@ export class Registry extends SmartContract {
     return result[0].toBoolean();
   }
 
-  challenges(param0: U256): Registry__challengesResult {
-    let result = super.call("challenges", [EthereumValue.fromU256(param0)]);
+  challenges(param0: BigInt): Registry__challengesResult {
+    let result = super.call("challenges", [
+      EthereumValue.fromUnsignedBigInt(param0)
+    ]);
     return new Registry__challengesResult(
-      result[0].toU256(),
+      result[0].toBigInt(),
       result[1].toAddress(),
       result[2].toBoolean(),
-      result[3].toU256(),
-      result[4].toU256()
+      result[3].toBigInt(),
+      result[4].toBigInt()
     );
   }
 
-  tokenClaims(_challengeID: U256, _voter: Address): boolean {
+  tokenClaims(_challengeID: BigInt, _voter: Address): boolean {
     let result = super.call("tokenClaims", [
-      EthereumValue.fromU256(_challengeID),
+      EthereumValue.fromUnsignedBigInt(_challengeID),
       EthereumValue.fromAddress(_voter)
     ]);
     return result[0].toBoolean();
   }
 
-  voterReward(_voter: Address, _challengeID: U256, _salt: U256): U256 {
+  voterReward(_voter: Address, _challengeID: BigInt, _salt: BigInt): BigInt {
     let result = super.call("voterReward", [
       EthereumValue.fromAddress(_voter),
-      EthereumValue.fromU256(_challengeID),
-      EthereumValue.fromU256(_salt)
+      EthereumValue.fromUnsignedBigInt(_challengeID),
+      EthereumValue.fromUnsignedBigInt(_salt)
     ]);
-    return result[0].toU256();
+    return result[0].toBigInt();
   }
 
   listings(param0: Bytes): Registry__listingsResult {
     let result = super.call("listings", [EthereumValue.fromFixedBytes(param0)]);
     return new Registry__listingsResult(
-      result[0].toU256(),
+      result[0].toBigInt(),
       result[1].toBoolean(),
       result[2].toAddress(),
-      result[3].toU256(),
-      result[4].toU256()
+      result[3].toBigInt(),
+      result[4].toBigInt()
     );
   }
 
-  determineReward(_challengeID: U256): U256 {
+  determineReward(_challengeID: BigInt): BigInt {
     let result = super.call("determineReward", [
-      EthereumValue.fromU256(_challengeID)
+      EthereumValue.fromUnsignedBigInt(_challengeID)
     ]);
-    return result[0].toU256();
+    return result[0].toBigInt();
   }
 
   parameterizer(): Address {
