@@ -40,5 +40,5 @@ dataSources:
           handler: listingRemoved
         - event: _ListingWithdrawn(bytes32)
           handler: listingWithdrawn
-        - event: _RewardClaimed(uint256, uint256, address)
+        - event: _RewardClaimed(uint256,uint256,address)
           handler: rewardClaimed
