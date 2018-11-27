@@ -32,13 +32,11 @@ dataSources:
           handler: challengeSucceeded
         - event: _ChallengeFailed(bytes32,uint256,uint256,uint256)
           handler: challengeFailed
-        - event: _Deposit(bytes32,uint256,uint256,address)
-          handler: deposit
         - event: _Withdrawal(bytes32,uint256,uint256,address)
           handler: withdrawal
         - event: _ListingRemoved(bytes32)
           handler: listingRemoved
         - event: _ListingWithdrawn(bytes32)
           handler: listingWithdrawn
-        - event: _RewardClaimed(uint256, uint256, address)
+        - event: _RewardClaimed(uint256,uint256,address)
           handler: rewardClaimed

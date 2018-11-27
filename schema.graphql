@@ -39,5 +39,6 @@ type Withdrawal @entity {
 }
 
 type User @entity {
+  id: ID!
   address: Bytes!
 }
