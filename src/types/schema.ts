@@ -2,12 +2,33 @@ import {
   TypedMap,
   Entity,
   Value,
+  ValueKind,
+  store,
   Address,
   Bytes,
   BigInt
 } from "@graphprotocol/graph-ts";
 
 export class Application extends Entity {
+  constructor(id: string) {
+    this.set("id", Value.fromString(id));
+    return this;
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Application entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Application entity with non-string ID"
+    );
+    store.set("Application", id.toString(), this);
+  }
+
+  static load(id: string): Application | null {
+    return store.get("Application", id) as Application | null;
+  }
+
   get id(): string {
     let value = this.get("id");
     if (value === null) {
@@ -146,6 +167,25 @@ export class Application extends Entity {
 }
 
 export class Challenge extends Entity {
+  constructor(id: string) {
+    this.set("id", Value.fromString(id));
+    return this;
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Challenge entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Challenge entity with non-string ID"
+    );
+    store.set("Challenge", id.toString(), this);
+  }
+
+  static load(id: string): Challenge | null {
+    return store.get("Challenge", id) as Challenge | null;
+  }
+
   get id(): string {
     let value = this.get("id");
     if (value === null) {
@@ -318,6 +358,25 @@ export class Challenge extends Entity {
 }
 
 export class Deposit extends Entity {
+  constructor(id: string) {
+    this.set("id", Value.fromString(id));
+    return this;
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Deposit entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Deposit entity with non-string ID"
+    );
+    store.set("Deposit", id.toString(), this);
+  }
+
+  static load(id: string): Deposit | null {
+    return store.get("Deposit", id) as Deposit | null;
+  }
+
   get id(): string {
     let value = this.get("id");
     if (value === null) {
@@ -456,6 +515,25 @@ export class Deposit extends Entity {
 }
 
 export class Withdrawal extends Entity {
+  constructor(id: string) {
+    this.set("id", Value.fromString(id));
+    return this;
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Withdrawal entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Withdrawal entity with non-string ID"
+    );
+    store.set("Withdrawal", id.toString(), this);
+  }
+
+  static load(id: string): Withdrawal | null {
+    return store.get("Withdrawal", id) as Withdrawal | null;
+  }
+
   get id(): string {
     let value = this.get("id");
     if (value === null) {
@@ -526,6 +604,42 @@ export class Withdrawal extends Entity {
 }
 
 export class User extends Entity {
+  constructor(id: string) {
+    this.set("id", Value.fromString(id));
+    return this;
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save User entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save User entity with non-string ID"
+    );
+    store.set("User", id.toString(), this);
+  }
+
+  static load(id: string): User | null {
+    return store.get("User", id) as User | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString() as string;
+    }
+  }
+
+  set id(value: string) {
+    if (value === null) {
+      this.unset("id");
+    } else {
+      this.set("id", Value.fromString(value as string));
+    }
+  }
+
   get address(): Bytes {
     let value = this.get("address");
     if (value === null) {

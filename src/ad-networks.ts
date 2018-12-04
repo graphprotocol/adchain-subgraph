@@ -1,7 +1,4 @@
-import 'allocator/arena'
-export { allocate_memory }
-
-import { store } from '@graphprotocol/graph-ts'
+import { Bytes, store } from '@graphprotocol/graph-ts'
 import {
   _Application,
   _ApplicationRemoved,
@@ -29,18 +26,16 @@ export function applicationWhitelist(event: _ApplicationWhitelisted): void {
   let listingResult = registry.listings(event.params.listingHash)
 
   // Create application entity
-  let application = new Application()
+  let application = new Application(listingHash)
   application.whitelisted = listingResult.value1
   application.expirationDate = listingResult.value0
   application.owner = listingResult.value2
   application.deposit = listingResult.value3
+  application.save()
 
-  let user = new User()
+  let user = new User(listingResult.value2.toHex())
   user.address = listingResult.value2
-
-  // Apply store updates (insert or update if entity already exists)
-  store.set('Application', listingHash, application)
-  store.set('User', listingResult.value2.toHex(), user)
+  user.save()
 }
 
 // Respond to application removed events
@@ -60,14 +55,12 @@ export function applicationAdded(event: _Application): void {
   let appEndDate = event.params.appEndDate
 
   // Create application entity
-  let application = new Application()
+  let application = new Application(appHash)
   application.deposit = appDeposit
   application.applicant = appApplicant
   application.endDate = appEndDate
   application.whitelisted = false
-
-  // Apply store updates
-  store.set('Application', appHash, application)
+  application.save()
 }
 
 // Respond to challange submitted events
@@ -80,20 +73,18 @@ export function challenge(event: _Challenge): void {
   let challenger = event.params.challenger
 
   // Create challenge entity
-  let challenge = new Challenge()
+  let challenge = new Challenge(challengeId)
   challenge.commitEndDate = commitEndDate
   challenge.revealEndDate = revealEndDate
   challenge.challenger = challenger
   challenge.application = listingHash
   challenge.outcome = 'pending'
   challenge.rewardClaimed = false
+  challenge.save()
 
-  let user = new User()
+  let user = new User(challenger.toHex())
   user.address = challenger
-
-  // Apply store updates
-  store.set('Challenge', challengeId, challenge)
-  store.set('User', challenger.toHex(), user)
+  user.save()
 }
 
 // Respond to challenge succeeded events
@@ -105,14 +96,12 @@ export function challengeSucceeded(event: _ChallengeSucceeded): void {
   let totalTokens = event.params.totalTokens
 
   // Create success entity
-  let success = new Challenge()
+  let success = new Challenge(challengeId.toHex())
   success.rewardPool = rewardPool
   success.totalTokens = totalTokens
   success.outcome = 'success'
   success.application = listingHash
-
-  // Apply store updates
-  store.set('Challenge', challengeId.toHex(), success)
+  success.save()
 }
 
 // Respond to challenge failed events
@@ -124,14 +113,12 @@ export function challengeFailed(event: _ChallengeFailed): void {
   let totalTokens = event.params.totalTokens
 
   // Create fail entity
-  let fail = new Challenge()
+  let fail = new Challenge(challengeId.toHex())
   fail.rewardPool = rewardPool
   fail.totalTokens = totalTokens
   fail.outcome = 'failed'
   fail.application = listingHash
-
-  // Apply store updates
-  store.set('Challenge', challengeId.toHex(), fail)
+  fail.save()
 }
 
 // Respond to deposit events
@@ -150,12 +137,9 @@ export function deposit(event: _Deposit): void {
   // deposit.newTotal = newTotal
   // deposit.owner = owner.toHex()
 
-  let user = new User()
+  let user = new User(owner.toHex())
   user.address = owner
-
-  // Apply store updates
-  // store.set('Challenge', depositId, deposit)
-  store.set('User', owner.toHex(), user)
+  user.save()
 }
 
 // Respond to withdrawal events
@@ -168,17 +152,15 @@ export function withdrawal(event: _Withdrawal): void {
   let withdrawId = listingHash + '_' + owner.toHex()
 
   // Create fail entity
-  let withdrawal = new Withdrawal()
+  let withdrawal = new Withdrawal(withdrawId)
   withdrawal.withdrew = withdrew
   withdrawal.newTotal = newTotal
   withdrawal.owner = owner
+  withdrawal.save()
 
-  let user = new User()
+  let user = new User(owner.toHex())
   user.address = owner
-
-  // Apply store updates
-  store.set('Withdrawal', withdrawId, withdrawal)
-  store.set('User', owner.toHex(), user)
+  user.save()
 }
 
 // Respond to listing removed events
@@ -206,14 +188,12 @@ export function rewardClaimed(event: _RewardClaimed): void {
   let voter = event.params.voter
 
   // Create challenge reward entity
-  let challengeReward = new Challenge()
+  let challengeReward = new Challenge(challengeId.toHex())
   challengeReward.voter = voter
   challengeReward.rewardClaimed = true
+  challengeReward.save()
 
-  let user = new User()
+  let user = new User(voter.toHex())
   user.address = voter
-
-  // Apply store updates
-  store.set('Challenge', challengeId.toHex(), challengeReward)
-  store.set('User', voter.toHex(), user)
+  user.save()
 }
