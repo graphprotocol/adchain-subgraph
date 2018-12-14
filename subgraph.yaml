@@ -1,4 +1,6 @@
 specVersion: 0.0.1
+repository: https://github.com/graphprotocol/adchain-subgraph
+description: The new blockchain based protocol for the advertising industry
 schema:
   file: ./schema.graphql
 dataSources:
