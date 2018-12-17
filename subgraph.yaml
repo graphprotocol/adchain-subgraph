@@ -4,6 +4,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: AdNetworks
+    network: mainnet
     source:
       address: '0x5E2Eb68A31229B469e34999C467b017222677183'
       abi: Registry
